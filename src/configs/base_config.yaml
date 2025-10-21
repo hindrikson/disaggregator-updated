@@ -1,0 +1,89 @@
+# BASICS
+base_year: 2015
+
+
+# PIPELINE CACHES / OUTPUTS
+consumption_data_cache_file: "con_{year}_{energy_carrier}.csv"
+consumption_data_cache_dir: "data/output/consumption/consumption_data"
+
+consumption_data_with_efficiency_factor_cache_file: "con_eff_{year}_{sector}_{energy_carrier}.csv"
+consumption_data_with_efficiency_factor_cache_dir: "data/output/applications/disagg_applications_efficiency_factor"
+
+consumption_disaggregate_temporal_cache_file: "con_disagg_temp_{year}_{sector}_{energy_carrier}.csv"
+consumption_disaggregate_temporal_cache_dir: "data/output/temporal/consumption_disaggregate_temporal"
+
+temporal_elec_load_from_fuel_switch_cache_dir: "data/output/heat/temporal_elec_load_from_fuel_switch"
+temporal_elec_load_from_fuel_switch_cache_file: "temporal_elec_load_from_fuel_switch_{year}_{state}_{energy_carrier}_{sector}_{switch_to}.csv"
+
+
+
+
+
+
+# UGR GENEISIS DATA
+ugr_genisis_year_start: 2000
+ugr_genisis_year_end: 2020
+ugr_genisis_data_file: "data/raw/dimensionless/ugr_2000to2020.csv"
+preprocessed_dir: "data/processed/ugr/"
+
+
+# REGIONAL NORMALIZATION 
+year_for_regional_normalization: 2023 # 2023 are 400 regions/districts
+regional_id_changes_files: "data/raw/regional/ags_lk_changes/changes_{year}to{year_next}.csv"
+
+
+# employees 
+employees_processed_dir: "data/processed/employees"
+employees_preprocessed_filename_pattern: "employees_preprocessed_{year}.csv"
+
+
+# gas industry self consumption
+gas_industry_self_consumption_cache_file: "data/processed/industry_self_consumption.csv"
+factor_gas_no_selfgen_cache_file: "data/processed/factor_gas_no_selfgen/factor_gas_no_selfgen_per_industry_sector_{year}.csv"
+
+
+# temporal
+shift_load_profiles_cache_file: "shift_load_profiles_{year}.csv"
+shift_load_profiles_cache_dir: "data/processed/temporal/shift_load_profiles_by_year"
+
+disagg_daily_gas_slp_cts_cache_file: "disagg_daily_gas_slp_cts_{state}_{year}.csv"
+disagg_daily_gas_slp_cts_cache_dir: "data/processed/temporal/disagg_daily_gas_slp_cts"
+
+
+# Temperature
+temperature_allocation_cache_file: "temperature_allocation_{year}_by_{resolution}.csv"
+temperature_allocation_cache_dir: "data/processed/temperature/temperature_allocation"
+
+
+# Heat
+era_temperature_data_cache_dir: "data/raw/temporal/ERA_temperature"
+era_temperature_data_cache_file: "ERA_temperature_{year}.nc"
+
+create_heat_norm_cts_cache_dir: "data/processed/heat/create_heat_norm_cts"
+heat_norm_cache_file: "heat_norm_{year}_{state}_{energy_carrier}.csv"
+consumption_total_cache_file: "consumption_total_{year}_{state}_{energy_carrier}.csv"
+consumption_temp_indep_norm_cache_file: "consumption_temp_indep_norm_{year}_{state}_{energy_carrier}.csv"
+
+
+sector_fuel_switch_fom_gas_petrol_cache_dir: "data/processed/heat/sector_fuel_switch_fom_gas_petrol"
+sector_fuel_switch_fom_gas_petrol_cache_file: "sector_fuel_switch_{year}_{sector}_{switch_to}_{energy_carrier}.csv"
+
+temporal_hydrogen_load_from_fuel_switch_cache_dir: "data/output/heat/temporal_hydrogen_load_from_fuel_switch"
+temporal_hydrogen_load_from_fuel_switch_cache_file: "temporal_hydrogen_load_from_fuel_switch_{year}_{state}_{energy_carrier}.csv"
+
+
+# Electric Vehicles
+first_year_existing_registration_data_kba: 2017
+last_year_existing_registration_data_kba: 2024
+
+first_year_existing_fuel_consumption_ugr: 2014
+last_year_existing_fuel_consumption_ugr: 2022
+
+s3_future_ev_consumption_cache_dir: "data/processed/electric_vehicles/s3_future_ev_consumption"
+s3_future_ev_consumption_cache_file: "s3_future_ev_consumption.csv"
+
+electric_vehicle_consumption_by_regional_id_cache_dir: "data/processed/electric_vehicles/electric_vehicle_consumption_by_regional_id"
+electric_vehicle_consumption_by_regional_id_cache_file: "electric_vehicle_consumption_by_regional_id_{year}_{szenario}_{s2_szenario}.csv"
+
+electric_vehicle_consumption_by_regional_id_temporal_cache_dir: "data/processed/electric_vehicles/electric_vehicle_consumption_by_regional_id_temporal"
+electric_vehicle_consumption_by_regional_id_temporal_cache_file: "electric_vehicle_consumption_by_regional_id_temporal_{year}_{szenario}_{s2_szenario}.csv"
