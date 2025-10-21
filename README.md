@@ -1,6 +1,6 @@
 ## This repository is an updated version of https://github.com/florian-baumann1k5/master-thesis-dissaggregator
 
-[#](#) DemandRegio Disaggregator
+# DemandRegio Disaggregator
 
 The DamendRegio project aims to disaggregate the final energy consumption of the sectors:
 - Industry
