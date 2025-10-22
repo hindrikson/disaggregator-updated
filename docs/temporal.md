@@ -36,9 +36,9 @@ Lets start with the disagg_application_efficiency_factor() function.
                       | 5 | 0.103753 | 0.666667 | 0.229581 | 0.0 |
         - returns a dataframe with both the power fators and temperature factors merged.
           Sample:
-              | industry_sectors | lighting | information_communication_technology | space_cooling | process_cooling | mechanical_energy | space_heating | hot_water | process_heat_below_100C | process_heat_100_to_200C | process_heat_200_to_500C | process_heat_above_500C |
-              |------------------|----------|--------------------------------------|---------------|-----------------|-------------------|---------------|-----------|-------------------------|--------------------------|--------------------------|-------------------------|
-              | 5                | 0.031746 | 0.015873                             | 0.015873      | 0.0             | 0.888889          | 0.0           | 0.0       | 0.004941                | 0.031746                 | 0.010932                 | 0.0                     |
+| industry_sectors | lighting | information_communication_technology | space_cooling | process_cooling | mechanical_energy | space_heating | hot_water | process_heat_below_100C | process_heat_100_to_200C | process_heat_200_to_500C | process_heat_above_500C |
+|------------------|----------|--------------------------------------|---------------|-----------------|-------------------|---------------|-----------|-------------------------|--------------------------|--------------------------|-------------------------|
+| 5                | 0.031746 | 0.015873                             | 0.015873      | 0.0             | 0.888889          | 0.0           | 0.0       | 0.004941                | 0.031746                 | 0.010932                 | 0.0                     |
      
     - apply_efficiency_factor()
 
