@@ -1,9 +1,16 @@
 import pandas as pd
 
+from src.data_access.api_reader import get_manufacturing_energy_consumption
+from src.data_access.local_reader import load_decomposition_factors_power
 from src.pipeline.pipe_consumption import get_consumption_data_historical_and_future
 from src.pipeline.pipe_temporal import disaggregate_temporal, get_consumption_data
 
 pd.options.display.max_columns = 50
+
+df = get_manufacturing_energy_consumption(2017)
+df.head()
+
+df = load_decomposition_factors_power()
 
 
 df = get_consumption_data(2050, "power", force_preprocessing=True)

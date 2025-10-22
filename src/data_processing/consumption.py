@@ -19,6 +19,10 @@ def get_ugr_data_ranges(year, force_preprocessing=False):
     """
     Get UGR (Underlying Energy Requirements) data for a specific year.
 
+    Gives the official national-level starting point for 48 sector ranges,
+    which then gets refined and disaggregated
+    into the final 88 sectors × 400 regions output.
+
     Args:
         year (int): The year to get the UGR data for. Availible data is defined in the config file:
             load_config("base_config.yaml")['ugr_genisis_year_start']
@@ -628,7 +632,7 @@ def calculate_iteratively_industry_regional_consumption(
     employees_by_industry_sector_and_regional_ids,
 ):
     """
-    Resolves the the consumption per industry_sector (from UGR) to regional_ids (with the help of JEVI) in an iterative approach.
+    Resolves the consumption per industry_sector (from UGR) to regional_ids (with the help of JEVI) in an iterative approach.
     This applies only to the industry sector with heavy energy consumption; CTS industry sector is resolved by the employees data.
 
     !!! The code logic is copied from the old dissaggregator, not from process explained in the Diss paper

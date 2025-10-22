@@ -18,6 +18,7 @@ from src.pipeline.pipe_consumption import (
 df_consumption = get_consumption_data(
     year=2020,  # 2000-2050
     energy_carrier="power",
+    force_preprocessing=True,
 )
 df_consumption.head()
 # df_consumption["6633"]
@@ -30,6 +31,9 @@ df_filtered = get_consumption_data_per_indsutry_sector_energy_carrier(
 )
 df_filtered.head()
 
+
+# %%
+df_kassel = df_
 
 # %% [markdown]
 # ## Temporal: `src/pipeline/pipe_temporal.py`:
