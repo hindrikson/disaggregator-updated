@@ -7,15 +7,15 @@ from src.pipeline.pipe_temporal import disaggregate_temporal, get_consumption_da
 
 pd.options.display.max_columns = 50
 
+df = get_consumption_data(2050, "power", force_preprocessing=True)
+print(df.head())
+print(df.dtypes)
+
 df = get_manufacturing_energy_consumption(2017)
 df.head()
 
 df = load_decomposition_factors_power()
 
-
-df = get_consumption_data(2050, "power", force_preprocessing=True)
-print(df.head())
-print(df.dtypes)
 
 # below it returns the consumption per industry sector (row) and regional id (columns)
 # for the whole year (not temporally disaggregated!).
