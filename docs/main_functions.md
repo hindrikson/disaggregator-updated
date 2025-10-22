@@ -32,9 +32,10 @@ to load and process data from various sources. We break down this function below
           of certain applications within the industry (lighting, heating, IT equipment, air conditioning, etc.)
         - this decomposition are loaded from data/raw/dimensionless/decomposition_factors.xlsx and sheet "Endenergieverbrauch Strom".
           I do not know yet where these data come from.
-          Sample values:
-             WZ  Beleuchtung   IKT         Klimakälte    Prozesskälte   Mechanische Energie  \
-             1   0.255814      0.046512    0.093023      0.023256       0.418605   
+          **Sample values:**
+            | WZ | Beleuchtung | IKT      | Klimakälte | Prozesskälte | Mechanische Energie |
+            |----|-------------|----------|------------|--------------|---------------------|
+            | 1  | 0.255814    | 0.046512 | 0.093023   | 0.023256     | 0.418605            |
     * calculate_self_generation()
         - returns a dataframe with an extra column for self-generation (power_incl_selfgen MWh and gas_no_selfgen MWh).
           The self generation is based on decomposition_factors dataframe from the function above,
