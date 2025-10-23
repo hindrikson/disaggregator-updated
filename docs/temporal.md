@@ -1,7 +1,9 @@
 # Temporal
 
 The function **disaggregate_temporal()** disaggregates the temporal data for a given energy carrier and sector. Its main functions are: 
-disagg_applications_efficiency_factor(), disaggregate_temporal_industry(), and specific functions for disaggregating for CTS.
+- disagg_applications_efficiency_factor()
+- disaggregate_temporal_industry()
+- specific functions for disaggregating for CTS
 
 Below is a detailed explanation from the top-level function down to its sub-functions.
 
