@@ -7,9 +7,7 @@ Its main functions are:
 - disaggregate_temporal_industry()
 - and specific functions for disaggregating for CTS.
 
-Lets start with the disagg_application_efficiency_factor() function.
-
-- disaggregate_temporal()
+## disaggregate_temporal()
     - disagg_applications_efficiency_factor()
         - get_consumption_data_per_indsutry_sector_energy_carrier()
             - Uses the get_consumption_data() function as explained in the conumption.md documentation.
