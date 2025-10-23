@@ -46,7 +46,18 @@ Below is a detailed explanation from the top-level function down to its sub-func
         - disaggregate_temporal_industry()
             * get_shift_load_profiles_by_year()
                 * get_shift_load_profiles_by_state_and_year()
-                    -
+                    - this function creates load shift prifiles based states holidays, weekdays, weekends days, for predifined shifts: 
+                    - s1 (single shift) 08:00:00-16:00:00 for:
+                        - S1_WT: working days only
+                        - S1_WT_SA: working days + Saturdays
+                        - S1_WT_SA_SO: working days + Saturdays + Sundays
+                    - and the same for s2 (two shifts) 06:00:00-23:00:00 and s3 24/7
+                    - hours outside these shifts receive also a proportion of the load, but much smaller.
+            * E.g., for Hessen in 2020, the load shift profiles at 14:00:00 are:
+                * | Timestamp           |    S1_WT | S1_WT_SA | S1_WT_SA_SO |    S2_WT | S2_WT_SA | S2_WT_SA_SO |    S3_WT | S3_WT_SA | S3_WT_SA_SO |
+                  | ------------------- | -------: | -------: | ----------: | -------: | -------: | ----------: | -------: | -------: | ----------: |
+                  | 2020-01-03 14:00:00 | 0.000046 | 0.000044 | 0.000042    | 0.000038 | 0.000036 | 0.000033    | 0.000034 | 0.000031 | 0.000028    |
+
         - if "cts":
             - skipping...
 
