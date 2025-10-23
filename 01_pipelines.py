@@ -59,7 +59,8 @@ df_filtered.head()
 
 
 # %%
-df_kassel = df_
+df_kassel = df_filtered[6633]
+df_kassel.head(20)
 
 # %% [markdown]
 # ## Temporal: `src/pipeline/pipe_temporal.py`:
