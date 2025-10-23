@@ -63,7 +63,7 @@ Below is a detailed explanation from the top-level function down to its sub-func
             * For every region-industry combination:
                 * extract the state of the region_id (first digit)
                 * map the industry sector to a shift profile
-                * The annual consumption is then distributed according to the shares of consumption for every industry based and shift profiles (15 min).
+                * The annual consumption is then distributed according to the shares of consumption for every industry based on its shift profiles shares (15 min).
         - if "cts":
             - skipping...
 
