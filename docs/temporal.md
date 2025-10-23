@@ -44,6 +44,7 @@ Below is a detailed explanation from the top-level function down to its sub-func
                 - This file loads the file *data/raw/temporal/Efficiency_Enhancement_Rates_Applications.xlsx*, and returns a dataframe with the effiency rates for a sector (wz) and energy_carrier.
             * The effieciency rates are then used to adjust the consumption data.
         - disaggregate_temporal_industry()
+            * Return the shift load profiles for a given year. The sum of every column (state, load_profile) equals 1.
             * get_shift_load_profiles_by_year()
                 * get_shift_load_profiles_by_state_and_year()
                     - this function creates load shift prifiles based states holidays, weekdays, weekends days, for predifined shifts: 
@@ -53,11 +54,16 @@ Below is a detailed explanation from the top-level function down to its sub-func
                         - S1_WT_SA_SO: working days + Saturdays + Sundays
                     - and the same for s2 (two shifts) 06:00:00-23:00:00 and s3 24/7
                     - hours outside these shifts receive also a proportion of the load, but much smaller.
-            * E.g., for Hessen in 2020, the load shift profiles at 14:00:00 are:
-                * | Timestamp           |    S1_WT | S1_WT_SA | S1_WT_SA_SO |    S2_WT | S2_WT_SA | S2_WT_SA_SO |    S3_WT | S3_WT_SA | S3_WT_SA_SO |
-                  | ------------------- | -------: | -------: | ----------: | -------: | -------: | ----------: | -------: | -------: | ----------: |
-                  | 2020-01-03 14:00:00 | 0.000046 | 0.000044 | 0.000042    | 0.000038 | 0.000036 | 0.000033    | 0.000034 | 0.000031 | 0.000028    |
-
+                * E.g., for Hessen in 2020, the load shift profiles at 14:00:00 are:
+                    * | Timestamp           |    S1_WT | S1_WT_SA | S1_WT_SA_SO |    S2_WT | S2_WT_SA | S2_WT_SA_SO |    S3_WT | S3_WT_SA | S3_WT_SA_SO |
+                      | ------------------- | -------: | -------: | ----------: | -------: | -------: | ----------: | -------: | -------: | ----------: |
+                      | 2020-01-03 14:00:00 | 0.000046 | 0.000044 | 0.000042    | 0.000038 | 0.000036 | 0.000033    | 0.000034 | 0.000031 | 0.000028    |
+            * shift_profile_industry()
+                * Assign a shift profile to every industry sector from 5-33
+            * For every region-industry combination:
+                * extract the state of the region_id (first digit)
+                * map the industry sector to a shift profile
+                * The annual consumption is then distributed according to the shares of consumption for every industry based and shift profiles (15 min).
         - if "cts":
             - skipping...
 
