@@ -39,8 +39,14 @@ Below is a detailed explanation from the top-level function down to its sub-func
                   | 5 | 0.031746 | 0.015873 | 0.015873 | 0.0 | 0.888889 | 0.0 | 0.0 | 0.004941 | 0.031746 | 0.010932 | 0.0 |
         
         - apply_efficiency_factor()
-            Returns the consumption with efficiency factors applied.
+            - Returns the consumption with efficiency factors applied.
             * load_efficiency_rate()
                 - This file loads the file *data/raw/temporal/Efficiency_Enhancement_Rates_Applications.xlsx*, and returns a dataframe with the effiency rates for a sector (wz) and energy_carrier.
             * The effieciency rates are then used to adjust the consumption data.
+        - disaggregate_temporal_industry()
+            * get_shift_load_profiles_by_year()
+                * get_shift_load_profiles_by_state_and_year()
+                    -
+        - if "cts":
+            - skipping...
 
