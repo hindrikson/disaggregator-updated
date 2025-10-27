@@ -7,13 +7,17 @@ to load and process data from various sources. We break down this function below
 
 - get_consumption_data_historical_and_future()
     * get_ugr_data_ranges()
-        - loads the GENESIS file (data/raw/dimensionless/ugr_2000to2020.csv) with the official national-level starting point for 48 sector ranges, 
-          which then later in the main function gets refined and disaggregated into the final 88 sectors × 400 regions output. 
+        - loads the GENESIS file (data/raw/dimensionless/ugr_2000to2020.csv)
+          with the official national-level starting point for 48 sector ranges,
+          which then later in the main function gets refined and disaggregated
+          into the final 88 sectors × 400 regions output. This data is
+          retrieved from "Verwendung von Energie: Deutschland, Jahre, Produktionsbereiche, Energieträger" under the link below:
+          https://www-genesis.destatis.de/datenbank/online/statistic/85121/table/85121-0002
     * get_employees_per_industry_sector_and_regional_ids()
         - get_historical_employees_by_industry_sector_and_regional_id()
             * get_historical_employees()
                 - returns a dataframe from opendata.ffe API (id_spatial=18) with historical number of employees per industry sector (WZ2008) and regional id, observed on the moth 9 
-                  of the given year. If the year is between 2000 and 2008, data from from 2008 is used. Max year is 2018.
+                  of the given year. If the year is between 2000 and 2008, data from from 2008 is used. Max year is 2018, over that, data from 2018 is used. For detailed description, see: [employee data](docs/tables/employees.md)
             * get_future_employees()
                 - returns a dataframe from opendata.ffe API (id_spatial=27) with number of employees py district and enconomic sector from 2012 to 2035. If
                   the year is bigger than 2035, it returns data from 2035.

@@ -5,7 +5,7 @@ The function **disaggregate_temporal()** disaggregates the temporal data for a g
 - disaggregate_temporal_industry()
 - specific functions for disaggregating for CTS
 
-Below is a detailed explanation from the top-level function down to its sub-functions.
+Below is a detailed explanation from the top-level function down to its sub-functions. We break down the function for "industry" and "power".
 
 - disaggregate_temporal()
     - disagg_applications_efficiency_factor()
@@ -38,8 +38,7 @@ Below is a detailed explanation from the top-level function down to its sub-func
                       |---|----------|----------|----------|-----|----------|-----|-----|----------|----------|----------|-----|
                       | 5 | 0.031746 | 0.015873 | 0.015873 | 0.0 | 0.888889 | 0.0 | 0.0 | 0.004941 | 0.031746 | 0.010932 | 0.0 |
             - The *disagg_applications_default()* takes the df of dissaggregation factors and the consumption data and perfroms the disaggregation by multiplying the consumption with the dissaggregation factors.
-            - Returns a dataframe with the consumption disaggregated by application.
-        
+            - Returns a dataframe with the consumption disaggregated by application. This disaggregation is primarily needed for CTS, where efficiency rates vary by application (e.g., lighting vs. heating). For industry sectors (5-33), a single efficiency rate is applied per sector to all its applications.        
         - apply_efficiency_factor()
             - Returns the consumption with efficiency factors applied.
             * load_efficiency_rate()
