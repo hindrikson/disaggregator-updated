@@ -17,7 +17,7 @@ to load and process data from various sources. We break down this function below
         - get_historical_employees_by_industry_sector_and_regional_id()
             * get_historical_employees()
                 - returns a dataframe from opendata.ffe API (id_spatial=18) with historical number of employees per industry sector (WZ2008) and regional id, observed on the moth 9 
-                  of the given year. If the year is between 2000 and 2008, data from from 2008 is used. Max year is 2018, over that, data from 2018 is used. For detailed description, see: [employee data](docs/tables/employees.md)
+                  of the given year. If the year is between 2000 and 2008, data from from 2008 is used. Max year is 2018, over that, data from 2018 is used. For detailed description, see: [employee data](tables/employees.md)
             * get_future_employees()
                 - returns a dataframe from opendata.ffe API (id_spatial=27) with number of employees py district and enconomic sector from 2012 to 2035. If
                   the year is bigger than 2035, it returns data from 2035.
