@@ -20,7 +20,7 @@ to load and process data from various sources. We break down this function below
                   of the given year. If the year is between 2000 and 2008, data from from 2008 is used. Max year is 2018, over that, data from 2018 is used. For detailed description, see: [employee data](tables/employees.md)
             * get_future_employees()
                 - returns a dataframe from opendata.ffe API (id_spatial=27) with number of employees py district and enconomic sector from 2012 to 2035. If
-                  the year is bigger than 2035, it returns data from 2035.
+                  the year is bigger than 2035, it returns data from 2035. For detailed description, see: [employee data](tables/employees.md)
         - returns a dataframe with number of employees per industry sector (88) and regional id (400) for a given year.
     * resolve_ugr_industry_sector_ranges_by_employees()
         - distributes the enery consumption from the 48 UGR industry sectors to the 88 WZ2008 industry sectors, 

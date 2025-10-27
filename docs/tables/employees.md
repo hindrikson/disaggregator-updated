@@ -2,6 +2,8 @@
 
 (Description taken from https://www.ffe.de/veroeffentlichungen/demandregio-harmonisierung-und-entwicklung-von-verfahren-zur-regionalen-und-zeitlichen-aufloesung-von-energienachfragen/)
 
+## Historical data
+
 Für die Verteilung der Verbräuche wurde die Anzahl der sozialversicherungspflichtig Beschäftigten
 je Landkreis nach Wirtschaftsabteilungen der WZ08 ausgewählt, der zweimal jährlich
 von der Bundesagentur für Arbeit (BA) veröffentlicht wird [180]. Dieser Datensatz weist für
@@ -18,3 +20,5 @@ gemäß der BMAS-Studie „Arbeitsmarkt 2030 - Wirtschaft und Arbeitsmarkt im di
 auf Basis der Entwicklung der Einwohnerzahl gemäß den Tabellen aus der Raumordnungsprognose
 2035 (𝑖𝑑𝑠𝑝𝑎𝑡𝑖𝑎𝑙 = 26) [185] fortgeschrieben. Diese sind unter der 𝑖𝑑𝑠𝑝𝑎𝑡𝑖𝑎𝑙 = 27 (Basis)
 und 28 (Digitalisierung) aus der Datenbank abrufbar.
+
+## Future data
