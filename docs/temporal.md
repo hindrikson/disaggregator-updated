@@ -33,21 +33,29 @@ Below is a detailed explanation from the top-level function down to its sub-func
                         - | industry_sectors | process_heat_below_100C | process_heat_100_to_200C | process_heat_200_to_500C | process_heat_above_500C |
                           |---|----------|----------|----------|-----|
                           | 5 | 0.103753 | 0.666667 | 0.229581 | 0.0 |
-            - The *dissagregate_for_applications()* then returns a dataframe with both the power fators and temperature factors merged.
-                - | industry_sectors | lighting | information_communication_technology | space_cooling | process_cooling | mechanical_energy | space_heating | hot_water | process_heat_below_100C | process_heat_100_to_200C | process_heat_200_to_500C | process_heat_above_500C |
-                  |---|----------|----------|----------|-----|----------|-----|-----|----------|----------|----------|-----|
-                  | 5 | 0.031746 | 0.015873 | 0.015873 | 0.0 | 0.888889 | 0.0 | 0.0 | 0.004941 | 0.031746 | 0.010932 | 0.0 |
+                * The *get_application_dissaggregation_factors()* then returns a dataframe with both the power fators and temperature factors merged.
+                    - | industry_sectors | lighting | information_communication_technology | space_cooling | process_cooling | mechanical_energy | space_heating | hot_water | process_heat_below_100C | process_heat_100_to_200C | process_heat_200_to_500C | process_heat_above_500C |
+                      |---|----------|----------|----------|-----|----------|-----|-----|----------|----------|----------|-----|
+                      | 5 | 0.031746 | 0.015873 | 0.015873 | 0.0 | 0.888889 | 0.0 | 0.0 | 0.004941 | 0.031746 | 0.010932 | 0.0 |
+            - The *disagg_applications_default()* takes the df of dissaggregation factors and the consumption data and perfroms the disaggregation by multiplying the consumption with the dissaggregation factors.
+            - Returns a dataframe with the consumption disaggregated by application.
         
         - apply_efficiency_factor()
             - Returns the consumption with efficiency factors applied.
             * load_efficiency_rate()
                 - This file loads the file *data/raw/temporal/Efficiency_Enhancement_Rates_Applications.xlsx*, and returns a dataframe with the effiency rates for a sector (wz) and energy_carrier.
+                - Sample for industry:
+                    - | industry_sector |   5    |   6    |   7    |   8    |   9    |   10   |   11   |   12   |
+                      |-----------------|--------|--------|--------|--------|--------|--------|--------|--------|
+                      | 2035            | 0.019  | 0.019  | 0.019  | 0.019  | 0.019  | 0.019  | 0.019  | 0.019  |
+                      | 2045            | 0.013  | 0.013  | 0.013  | 0.013  | 0.013  | 0.013  | 0.013  | 0.013  |
+                - For a given year, a compound efficiency factor is calculated by applying the Phase 1 rate (from the 2035 row) for years between 2019-2035, and then the Phase 2 rate (from the 2045 row) for any years after 2035.
             * The effieciency rates are then used to adjust the consumption data.
         - disaggregate_temporal_industry()
             * Return the shift load profiles for a given year. The sum of every column (state, load_profile) equals 1.
             * get_shift_load_profiles_by_year()
                 * get_shift_load_profiles_by_state_and_year()
-                    - this function creates load shift prifiles based states holidays, weekdays, weekends days, for predifined shifts: 
+                    - this function creates load shift profiles based on states and yearly holidays, weekdays, weekends days, for predifined shifts: 
                     - s1 (single shift) 08:00:00-16:00:00 for:
                         - S1_WT: working days only
                         - S1_WT_SA: working days + Saturdays
@@ -59,7 +67,7 @@ Below is a detailed explanation from the top-level function down to its sub-func
                       | ------------------- | -------: | -------: | ----------: | -------: | -------: | ----------: | -------: | -------: | ----------: |
                       | 2020-01-03 14:00:00 | 0.000046 | 0.000044 | 0.000042    | 0.000038 | 0.000036 | 0.000033    | 0.000034 | 0.000031 | 0.000028    |
             * shift_profile_industry()
-                * Assign a shift profile to every industry sector from 5-33
+                * This function assigns a predefined shift profile to every industry sector from 5-33. For example, industry 5 is given a S3_WT_SA profile, while industry 26 is given a S3_WT_SA profile.
             * For every region-industry combination:
                 * extract the state of the region_id (first digit)
                 * map the industry sector to a shift profile
