@@ -3,7 +3,6 @@
 (Description taken from https://www.ffe.de/veroeffentlichungen/demandregio-harmonisierung-und-entwicklung-von-verfahren-zur-regionalen-und-zeitlichen-aufloesung-von-energienachfragen/)
 
 ## Historical data
-
 Für die Verteilung der Verbräuche wurde die Anzahl der sozialversicherungspflichtig Beschäftigten
 je Landkreis nach Wirtschaftsabteilungen der WZ08 ausgewählt, der zweimal jährlich
 von der Bundesagentur für Arbeit (BA) veröffentlicht wird [180]. Dieser Datensatz weist für
@@ -12,6 +11,7 @@ historische Daten und LK-Summe bzw. WZ-Summe generiert. Der Datensatz ist auch i
 Datenbank unter der 𝑖𝑑𝑠𝑝𝑎𝑡𝑖𝑎𝑙 = 18 zu finden [181]. Die Daten sind für die Jahre 2008 bis 2018
 verfügbar, jeweils zum Stichtag 30.06. und 30.09.
 
+## Future data
 Daneben existiert ein Datensatz mit fortgeschriebenen Beschäftigtenzahlen für die Jahre von
 2014 bis 2030 in gleicher regionaler und wirtschaftszweigspezifischer Auflösung. Dieser ist
 gemäß der BMAS-Studie „Arbeitsmarkt 2030 - Wirtschaft und Arbeitsmarkt im digitalen Zeitalter"
@@ -21,4 +21,3 @@ auf Basis der Entwicklung der Einwohnerzahl gemäß den Tabellen aus der Raumord
 2035 (𝑖𝑑𝑠𝑝𝑎𝑡𝑖𝑎𝑙 = 26) [185] fortgeschrieben. Diese sind unter der 𝑖𝑑𝑠𝑝𝑎𝑡𝑖𝑎𝑙 = 27 (Basis)
 und 28 (Digitalisierung) aus der Datenbank abrufbar.
 
-## Future data
