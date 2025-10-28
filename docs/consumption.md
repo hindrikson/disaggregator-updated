@@ -13,6 +13,8 @@ to load and process data from various sources. We break down this function below
           into the final 88 sectors × 400 regions output. This data is
           retrieved from "Verwendung von Energie: Deutschland, Jahre, Produktionsbereiche, Energieträger" under the link below:
           https://www-genesis.destatis.de/datenbank/online/statistic/85121/table/85121-0002
+    * apply_activity_driver()
+        - if the year is beyond the end year of the UGR data (2020), a projected energy demand is applied to each wz using "activity drivers", in the file 'data/raw/temporal/Activity_drivers.xlsx'. See [activity drivers](tables/activity_drivers.md) for more details.
     * get_employees_per_industry_sector_and_regional_ids()
         - get_historical_employees_by_industry_sector_and_regional_id()
             * get_historical_employees()
@@ -25,7 +27,7 @@ to load and process data from various sources. We break down this function below
     * resolve_ugr_industry_sector_ranges_by_employees()
         - distributes the enery consumption from the 48 UGR industry sectors to the 88 WZ2008 industry sectors, 
           based on the share of employees.
-            - You have the total evergy between a sector range, and you distribute to the sectors inside the range based on the share of employees.
+            - You have the total energy between a sector range, and you distribute to the sectors inside the range based on the share of employees.
         - returns a dataframe with wz code and their consumption values for the given year.
     * load_decomposition_factors_gas() 
         - skipping...
@@ -34,8 +36,7 @@ to load and process data from various sources. We break down this function below
     * load_decomposition_factors_power()
         - the power consumption in each wz is distributed according to share 
           of certain applications within the industry (lighting, heating, IT equipment, air conditioning, etc.)
-        - this decomposition are loaded from data/raw/dimensionless/decomposition_factors.xlsx and sheet "Endenergieverbrauch Strom".
-          I do not know yet where these data come from.
+        - this decomposition are loaded from data/raw/dimensionless/decomposition_factors.xlsx and sheet "Endenergieverbrauch Strom", and is base on literature from AGEB (Arbeitsgemeinschaft Energiebilanzen) and VDI (Verein Deutscher Ingenieure).
           **Sample values:**
             | WZ | Beleuchtung | IKT      | Klimakälte | Prozesskälte | Mechanische Energie |
             |----|-------------|----------|------------|--------------|---------------------|
@@ -46,11 +47,15 @@ to load and process data from various sources. We break down this function below
           which includes the share of "electricity_self_generation"
     * get_regional_energy_consumption()
         - get_manufacturing_energy_consumption
-            - requests the the table 15 from demandregion_spatial API - Energy consumption by manufacturing, mining and quarrying industries (German Districts)
-              or "Jahreserhebung über die Energieverwendung im Verarbeitenden Gewerbe sowie im Bergbau und in der Gewinnung von Steinen und Erden (Landkreise)"
+            - requests the table 15 from demandregion_spatial API - Energy consumption by manufacturing, mining and quarrying industries (German Districts)
+              or "Jahreserhebung über die Energieverwendung im Verarbeitenden Gewerbe sowie im Bergbau und in der Gewinnung von Steinen und Erden (Landkreise)". See [jevi.md](tables/jevi.md) for more details.
               The table includes data from 2003 up till 2017 (below 2003, uses data from 2003; above 2017, uses data from 2017)
         - returns a dataframe with regional energy consumption for gas and power per region_id
     * calculate_iteratively_industry_regional_consumption()
+        - the function takes as input:
+            - the concumption data with self generation per industry sector
+            - the total regional energy consumption from JEVI per region_id
+            - the employees per industry sector and region_id
         - Resolves the consumption per industry_sector (from UGR) to regional_ids (with the help of JEVI) in an iterative approach.
           This applies only to the industry sector with heavy energy consumption; CTS industry sector is resolved by the employees data.
         - The function distributes national industry sector consumption to 400 regions while simultaneously satisfying two constraints:
@@ -61,7 +66,5 @@ to load and process data from various sources. We break down this function below
           Bottom-up: Regional totals (JEVI) - authoritative for geographic distribution.
           By iterating between these two constraints, the algorithm finds a balanced solution 
           that respects both data sources while using employee distribution as the spatial allocation key.
-              - regional_energy_consumption_jevi provides the regional totals - columns total, power, gas, coal, heating_oil, etc, indexed by region_id
-              - consumption_data provides the national industry sector totals from UGR - indexed by industry_sector
           - The function first initializes a consumption matrix based on employee distribution, then iteratively scales rows and columns to match UGR and JEVI totals.
 
