@@ -76,14 +76,14 @@ Below is a detailed explanation from the top-level function down to its sub-func
             - returns a dictionary of Bundesland abbreviations and their corresponding numerical codes.
         * load_profiles_cts_power()
             - Assign a power load profile (SLP) to every CTS branch by WZ number. E.g., {1: 'L0', 2: 'L0', 3: 'G3', 35: 'G3', 36: 'G3', 37: 'G3', ... }
-            - | Hour     | SA_WIZ | SU_WIZ | WD_WIZ | SA_SOZ | SU_SOZ | WD_SOZ | SA_UEZ | SU_UEZ | WD_UEZ |
-              |----------|------|------|------|-----|------|------|-------|------|------|
-              | 00:00:00 | 94.1 | 73.2 | 74.9 | 109 | 91.6 | 96.5 | 101.5 | 80.7 | 86.6 |
-
         * get_CTS_power_slp()
             - load_power_load_profile()
                 - This function returns the load_profile for power for a specific profile name (e.g., 'H0', 'L0', 'G3', etc.)
                 - For each profile there is an excel file in 'data/raw/temporal/power_load_profiles/' where the load is distributed temporally (15 min) for a whole year.
+                - | Hour     | SA_WIZ | SU_WIZ | WD_WIZ | SA_SOZ | SU_SOZ | WD_SOZ | SA_UEZ | SU_UEZ | WD_UEZ |
+                  |----------|------|------|------|-----|------|------|-------|------|------|
+                  | 00:00:00 | 94.1 | 73.2 | 74.9 | 109 | 91.6 | 96.5 | 101.5 | 80.7 | 86.6 |
+
             - Returns a dataframe with temporal load porfiles for a specific state (Bundesland).
             - | Date       | Day        | Hour     | DayOfYear | WD    | SA    | SU    | WIZ   | SOZ   | UEZ   | H0        | L0        | L1        | L2        | G0        | G1        | G2        | G3        | G4        | G5        | G6        |
               |------------|------------|----------|---|-------|-------|------|------|-------|-------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|
