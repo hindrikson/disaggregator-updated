@@ -5,7 +5,10 @@ The function **disaggregate_temporal()** disaggregates the temporal data for a g
 - disaggregate_temporal_industry()
 - specific functions for disaggregating for CTS
 
-Below is a detailed explanation from the top-level function down to its sub-functions. We break down the function for "industry" and "power".
+Below is a detailed explanation from the top-level function down to its sub-functions. We break down the function for:
+- industry and power
+- CTS and power
+The cases for gas and petrol are not yet documented here.
 
 - disaggregate_temporal()
     - disagg_applications_efficiency_factor()
