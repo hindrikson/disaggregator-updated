@@ -50,7 +50,7 @@ Below is a detailed explanation from the top-level function down to its sub-func
                       | 2045            | 0.013  | 0.013  | 0.013  | 0.013  | 0.013  | 0.013  | 0.013  | 0.013  |
                 - For a given year, a compound efficiency factor is calculated by applying the Phase 1 rate (from the 2035 row) for years between 2019-2035, and then the Phase 2 rate (from the 2045 row) for any years after 2035.
             * The effieciency rates are then used to adjust the consumption data.
-    ### Industry
+    ### Industry and power
     - disaggregate_temporal_industry()
         * Return the shift load profiles for a given year. The sum of every column (state, load_profile) equals 1.
         * get_shift_load_profiles_by_year()
@@ -72,6 +72,7 @@ Below is a detailed explanation from the top-level function down to its sub-func
             * extract the state of the region_id (first digit)
             * map the industry sector to a shift profile
             * The annual consumption is then distributed according to the shares of consumption for every industry based on its shift profiles shares (15 min).
+    ## CTS and power
     - disaggregate_temporal_power_CTS()
         * federal_state_dict()
             - returns a dictionary of Bundesland abbreviations and their corresponding numerical codes.
