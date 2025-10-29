@@ -52,7 +52,7 @@ Below is a detailed explanation from the top-level function down to its sub-func
             * The effieciency rates are then used to adjust the consumption data.
     ## Industry and power
     - disaggregate_temporal_industry()
-        * Return the shift load profiles for a given year. The sum of every column (state, load_profile) equals 1.
+        * Returns the shift load profiles for a given year. The sum of every column (state, load_profile) equals 1.
         * get_shift_load_profiles_by_year()
             * get_shift_load_profiles_by_state_and_year()
                 - this function creates load shift profiles based on states and yearly holidays, weekdays, weekends days, for predifined shifts: 
@@ -90,7 +90,7 @@ Below is a detailed explanation from the top-level function down to its sub-func
         * get_CTS_power_slp()
             - load_power_load_profile()
                 - This function returns the load_profile for power for a specific profile name (e.g., 'H0', 'L0', 'G3', etc.)
-                - For each profile there is an excel file in 'data/raw/temporal/power_load_profiles/' where the load is distributed temporally (15 min) for a whole year.
+                - For each profile there is an excel file in 'data/raw/temporal/power_load_profiles/' where the load is distributed temporally (15 min) for a general day (not year!).
                 - | Hour     | SA_WIZ | SU_WIZ | WD_WIZ | SA_SOZ | SU_SOZ | WD_SOZ | SA_UEZ | SU_UEZ | WD_UEZ |
                   |----------|------|------|------|-----|------|------|-------|------|------|
                   | 00:00:00 | 94.1 | 73.2 | 74.9 | 109 | 91.6 | 96.5 | 101.5 | 80.7 | 86.6 |
