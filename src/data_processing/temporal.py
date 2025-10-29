@@ -440,6 +440,7 @@ def disaggregate_temporal_power_CTS(
 
     for state in federal_state_dict().values():
         logger.info("Working on state: {}.".format(state))
+        # create a column "SLP" where every WZ gets assigned its load profile based on the load_profiles_cts_power() dict
         sv_lk_wz = (
             sv_yearly.loc[lambda x: x["BL"] == state]
             .drop(columns=["BL"])
