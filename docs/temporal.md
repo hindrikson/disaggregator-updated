@@ -50,27 +50,37 @@ Below is a detailed explanation from the top-level function down to its sub-func
                       | 2045            | 0.013  | 0.013  | 0.013  | 0.013  | 0.013  | 0.013  | 0.013  | 0.013  |
                 - For a given year, a compound efficiency factor is calculated by applying the Phase 1 rate (from the 2035 row) for years between 2019-2035, and then the Phase 2 rate (from the 2045 row) for any years after 2035.
             * The effieciency rates are then used to adjust the consumption data.
-        - disaggregate_temporal_industry()
-            * Return the shift load profiles for a given year. The sum of every column (state, load_profile) equals 1.
-            * get_shift_load_profiles_by_year()
-                * get_shift_load_profiles_by_state_and_year()
-                    - this function creates load shift profiles based on states and yearly holidays, weekdays, weekends days, for predifined shifts: 
-                    - s1 (single shift) 08:00:00-16:00:00 for:
-                        - S1_WT: working days only
-                        - S1_WT_SA: working days + Saturdays
-                        - S1_WT_SA_SO: working days + Saturdays + Sundays
-                    - and the same for s2 (two shifts) 06:00:00-23:00:00 and s3 24/7
-                    - hours outside these shifts receive also a proportion of the load, but much smaller.
-                * E.g., for Hessen in 2020, the load shift profiles at 14:00:00 are:
-                    * | Timestamp           |    S1_WT | S1_WT_SA | S1_WT_SA_SO |    S2_WT | S2_WT_SA | S2_WT_SA_SO |    S3_WT | S3_WT_SA | S3_WT_SA_SO |
-                      | ------------------- | -------: | -------: | ----------: | -------: | -------: | ----------: | -------: | -------: | ----------: |
-                      | 2020-01-03 14:00:00 | 0.000046 | 0.000044 | 0.000042    | 0.000038 | 0.000036 | 0.000033    | 0.000034 | 0.000031 | 0.000028    |
-            * shift_profile_industry()
-                * This function assigns a predefined shift profile to every industry sector from 5-33. For example, industry 5 is given a S3_WT_SA profile, while industry 26 is given a S3_WT_SA profile.
-            * For every region-industry combination:
-                * extract the state of the region_id (first digit)
-                * map the industry sector to a shift profile
-                * The annual consumption is then distributed according to the shares of consumption for every industry based on its shift profiles shares (15 min).
-        - if "cts":
-            - skipping...
+    - disaggregate_temporal_industry()
+        * Return the shift load profiles for a given year. The sum of every column (state, load_profile) equals 1.
+        * get_shift_load_profiles_by_year()
+            * get_shift_load_profiles_by_state_and_year()
+                - this function creates load shift profiles based on states and yearly holidays, weekdays, weekends days, for predifined shifts: 
+                - s1 (single shift) 08:00:00-16:00:00 for:
+                    - S1_WT: working days only
+                    - S1_WT_SA: working days + Saturdays
+                    - S1_WT_SA_SO: working days + Saturdays + Sundays
+                - and the same for s2 (two shifts) 06:00:00-23:00:00 and s3 24/7
+                - hours outside these shifts receive also a proportion of the load, but much smaller.
+            * E.g., for Hessen in 2020, the load shift profiles at 14:00:00 are:
+                * | Timestamp           |    S1_WT | S1_WT_SA | S1_WT_SA_SO |    S2_WT | S2_WT_SA | S2_WT_SA_SO |    S3_WT | S3_WT_SA | S3_WT_SA_SO |
+                  | ------------------- | -------: | -------: | ----------: | -------: | -------: | ----------: | -------: | -------: | ----------: |
+                  | 2020-01-03 14:00:00 | 0.000046 | 0.000044 | 0.000042    | 0.000038 | 0.000036 | 0.000033    | 0.000034 | 0.000031 | 0.000028    |
+        * shift_profile_industry()
+            * This function assigns a predefined shift profile to every industry sector from 5-33. For example, industry 5 is given a S3_WT_SA profile, while industry 26 is given a S3_WT_SA profile.
+        * For every region-industry combination:
+            * extract the state of the region_id (first digit)
+            * map the industry sector to a shift profile
+            * The annual consumption is then distributed according to the shares of consumption for every industry based on its shift profiles shares (15 min).
+    - disaggregate_temporal_power_CTS()
+        * federal_state_dict()
+            - returns a dictionary of Bundesland abbreviations and their corresponding numerical codes.
+        * load_profiles_cts_power()
+            - Assign a power load profile (SLP) to every CTS branch by WZ number. E.g., {1: 'L0', 2: 'L0', 3: 'G3', 35: 'G3', 36: 'G3', 37: 'G3', ... }
+        * get_CTS_power_slp()
+            - Returns a dataframe with temporal load porfiles for a specific state (Bundesland).
+            - | Date       | Day        | Hour     | DayOfYear | WD    | SA    | SU    | WIZ   | SOZ   | UEZ   | H0        | L0        | L1        | L2        | G0        | G1        | G2        | G3        | G4        | G5        | G6        |
+              |------------|------------|----------|---|-------|-------|------|------|-------|-------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|
+              | 2020-01-01 | 2020-01-01 | 00:00:00 | 1 | False | False | True | True | False | False | 0.000018 | 0.000018 | 0.000017 | 0.000019 | 0.000015 | 0.000006 | 0.000017 | 0.000021 | 0.000014 | 0.000009 | 0.000017 |
+
+                 
 

@@ -425,6 +425,7 @@ def disaggregate_temporal_power_CTS(
 
     """
 
+    # add a column "BL" to consumption_data with the abbreviation of the state based on the regional code
     sv_yearly = consumption_data.assign(
         BL=lambda x: [
             federal_state_dict().get(int(i[:-3])) for i in x.index.astype(str)
