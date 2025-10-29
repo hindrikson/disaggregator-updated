@@ -97,6 +97,6 @@ Below is a detailed explanation from the top-level function down to its sub-func
             - | Date       | Day        | Hour     | DayOfYear | WD    | SA    | SU    | WIZ   | SOZ   | UEZ   | H0        | L0        | L1        | L2        | G0        | G1        | G2        | G3        | G4        | G5        | G6        |
               |------------|------------|----------|---|-------|-------|------|------|-------|-------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|
               | 2020-01-01 | 2020-01-01 | 00:00:00 | 1 | False | False | True | True | False | False | 0.000018 | 0.000018 | 0.000017 | 0.000019 | 0.000015 | 0.000006 | 0.000017 | 0.000021 | 0.000014 | 0.000009 | 0.000017 |
-
+        * The consumption data is then filtered for every type of load profile (SLP), whose consumption data is then multiplied by the according standard load profile of the function above. Everything is then concatenated to a final dataframe with the temporal disaggregated consumption for every CTS branch.
                  
 
