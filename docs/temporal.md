@@ -75,7 +75,16 @@ Below is a detailed explanation from the top-level function down to its sub-func
         * federal_state_dict()
             - returns a dictionary of Bundesland abbreviations and their corresponding numerical codes.
         * load_profiles_cts_power()
-            - Assign a power load profile (SLP) to every CTS branch by WZ number. E.g., {1: 'L0', 2: 'L0', 3: 'G3', 35: 'G3', 36: 'G3', 37: 'G3', ... }
+            - Returns a dictionary: {1: 'L0', 2: 'L0', 3: 'G3', 35: 'G3', 36: 'G3', 37: 'G3', ... }
+        * For every state the the consumption dataframe is filtered according to the state number, and the function assigns a power load profile (SLP) to every CTS with the dictionary mapping from the function above.
+        * The resulting dataframe:
+            * | industry_sector | 1001       | 1002        | SLP |
+              |----|-------------|--------------|----|
+              | 1  | 249.669997  | 969.018490   | L0 |
+              | 2  | 0.000000    | 89.470945    | L0 |
+              | 3  | 0.000000    | 0.000000     | G3 |
+              | 36 | 0.000000    | 14579.634018 | G3 |
+              | 37 | 1563.897832 | 244.854069   | G3 |
         * get_CTS_power_slp()
             - load_power_load_profile()
                 - This function returns the load_profile for power for a specific profile name (e.g., 'H0', 'L0', 'G3', etc.)
@@ -84,7 +93,7 @@ Below is a detailed explanation from the top-level function down to its sub-func
                   |----------|------|------|------|-----|------|------|-------|------|------|
                   | 00:00:00 | 94.1 | 73.2 | 74.9 | 109 | 91.6 | 96.5 | 101.5 | 80.7 | 86.6 |
 
-            - Returns a dataframe with temporal load porfiles for a specific state (Bundesland).
+            - Returns a normalized dataframe based on the values of the static standard last profiles, with temporal load porfiles for a specific state (Bundesland). These normalized values based on standard last profiles are then used to disaggregate the annual consumption for every CTS branch.
             - | Date       | Day        | Hour     | DayOfYear | WD    | SA    | SU    | WIZ   | SOZ   | UEZ   | H0        | L0        | L1        | L2        | G0        | G1        | G2        | G3        | G4        | G5        | G6        |
               |------------|------------|----------|---|-------|-------|------|------|-------|-------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|
               | 2020-01-01 | 2020-01-01 | 00:00:00 | 1 | False | False | True | True | False | False | 0.000018 | 0.000018 | 0.000017 | 0.000019 | 0.000015 | 0.000006 | 0.000017 | 0.000021 | 0.000014 | 0.000009 | 0.000017 |
