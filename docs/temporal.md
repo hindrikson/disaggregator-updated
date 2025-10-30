@@ -11,7 +11,7 @@ Below is a detailed explanation from the top-level function down to its sub-func
 - disaggregate_temporal()
     - disagg_applications_efficiency_factor()
         - get_consumption_data_per_indsutry_sector_energy_carrier()
-            - Uses the get_consumption_data() function as explained in the conumption.md documentation.
+            - Uses the get_consumption_data() function as explained in the [consumption](docs/consumption.me) documentation.
             - Filter the consumption data for the given energy carrier and sector (industry or CTS).
         - dissagregate_for_applications()
             - get_application_dissaggregation_factors()
@@ -79,7 +79,7 @@ Below is a detailed explanation from the top-level function down to its sub-func
         * federal_state_dict()
             - returns a dictionary of Bundesland abbreviations and their corresponding numerical codes.
         * load_profiles_cts_power()
-            - Returns a dictionary: {1: 'L0', 2: 'L0', 3: 'G3', 35: 'G3', 36: 'G3', 37: 'G3', ... }
+            - Returns a dictionary: {1: 'L0', 2: 'L0', 3: 'G3', 35: 'G3', 36: 'G3', 37: 'G3', ... 
         * For every state the consumption dataframe is filtered according to the state number, and the function assigns a power load profile (SLP) to every CTS with the dictionary mapping from the function above.
         * The resulting dataframe:
             * | industry_sector | 1001       | 1002        | SLP |
