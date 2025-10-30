@@ -62,7 +62,7 @@ Below is a detailed explanation from the top-level function down to its sub-func
                     - S1_WT_SA: working days + Saturdays
                     - S1_WT_SA_SO: working days + Saturdays + Sundays
                 - and the same for s2 (two shifts) 06:00:00-23:00:00 and s3 24/7
-                - For every 15min interval within a shift, the same proportion of load is assigned, and a lower proportion outside the shift. Hours outside these shifts receive also a proportion of the load, but much smaller.
+                - For every 15min interval within a shift, the same proportion of load is assigned. For periods outside the shift a fixed lower proportion is assigned (as it is assumed that some load is still required).
                 - Shift load profiles are very similar among states, with only small differences due to holidays.
             * E.g., for Hessen in 2020, the load shift profiles at 14:00:00 are:
                 * | Timestamp           |    S1_WT | S1_WT_SA | S1_WT_SA_SO |    S2_WT | S2_WT_SA | S2_WT_SA_SO |    S3_WT | S3_WT_SA | S3_WT_SA_SO |
