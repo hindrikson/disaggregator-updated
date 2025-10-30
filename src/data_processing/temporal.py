@@ -632,7 +632,9 @@ def get_shift_load_profiles_by_state_and_year(
         "S3_WT_SA_SO",
     ]:
         if sp == "S1_WT":
+            # number of 15min intervals that are working hours
             anzahl_wz = 17 / 48 * len(df[df["workday"]])
+            # number of 15min intervals that are non-working hours
             anzahl_nwz = (
                 31 / 48 * len(df[df["workday"]])
                 + len(df[df["sunday"]])
@@ -640,8 +642,10 @@ def get_shift_load_profiles_by_state_and_year(
             )
             anteil = 1 / (anzahl_wz + low * anzahl_nwz)
             df[sp] = anteil
+            # if the day is sunday or saturday set the value to low*anteil
             mask = df["sunday"] | df["saturday"]
             df.loc[mask, sp] = low * anteil
+            # for all workdays, set the value to low*anteil if the hour is before 08:00 or after 16:30
             mask = (df["workday"]) & (
                 (df["Hour"] < pd.to_datetime("08:00:00").time())
                 | (df["Hour"] >= pd.to_datetime("16:30:00").time())
