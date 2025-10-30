@@ -1,31 +1,31 @@
 # Main functions
 
 ## Consumption
-For the consumption data we use the *get_consumption_data()*. This function has as the main function the
+For the consumption data, the *get_consumption_data()* is used. This function has as main function the
 *get_consumption_data_historical_and_future()*, which calls several sub-functions
 to load and process data from various sources. We break down this function below:
 
 - get_consumption_data_historical_and_future()
     * get_ugr_data_ranges()
-        - loads the GENESIS file (data/raw/dimensionless/ugr_2000to2020.csv)
+        - Loads the GENESIS file (data/raw/dimensionless/ugr_2000to2020.csv)
           with the official national-level starting point for 48 sector ranges,
           which then later in the main function gets refined and disaggregated
           into the final 88 sectors × 400 regions output. This data is
           retrieved from "Verwendung von Energie: Deutschland, Jahre, Produktionsbereiche, Energieträger" under the link below:
           https://www-genesis.destatis.de/datenbank/online/statistic/85121/table/85121-0002
     * apply_activity_driver()
-        - if the year is beyond the end year of the UGR data (2020), a projected energy demand is applied to each wz using "activity drivers", in the file 'data/raw/temporal/Activity_drivers.xlsx'. See [activity drivers](tables/activity_drivers.md) for more details.
+        - If the year is beyond the end year of the UGR data (2020), a projected energy demand is applied to each wz using "activity drivers", in the file 'data/raw/temporal/Activity_drivers.xlsx'. See [activity drivers](tables/activity_drivers.md) for more details.
     * get_employees_per_industry_sector_and_regional_ids()
         - get_historical_employees_by_industry_sector_and_regional_id()
             * get_historical_employees()
                 - returns a dataframe from opendata.ffe API (id_spatial=18) with historical number of employees per industry sector (WZ2008) and regional id, observed on the moth 9 
-                  of the given year. If the year is between 2000 and 2008, data from from 2008 is used. Max year is 2018, over that, data from 2018 is used. For detailed description, see: [employee data](tables/employees.md)
+                  of the given year. If the year is between 2000 and 2008, data from 2008 is used. Max year is 2018, over that, data from 2018 is used. For detailed description, see: [employee data](tables/employees.md)
             * get_future_employees()
-                - returns a dataframe from opendata.ffe API (id_spatial=27) with number of employees py district and enconomic sector from 2012 to 2035. If
+                - returns a dataframe from opendata.ffe API (id_spatial=27) with number of employees by district and economic sector from 2012 to 2035. If
                   the year is bigger than 2035, it returns data from 2035. For detailed description, see: [employee data](tables/employees.md)
         - returns a dataframe with number of employees per industry sector (88) and regional id (400) for a given year.
     * resolve_ugr_industry_sector_ranges_by_employees()
-        - distributes the enery consumption from the 48 UGR industry sectors to the 88 WZ2008 industry sectors, 
+        - Distributes the enery consumption from the 48 UGR industry sectors to the 88 WZ2008 industry sectors, 
           based on the share of employees.
             - You have the total energy between a sector range, and you distribute to the sectors inside the range based on the share of employees.
         - returns a dataframe with wz code and their consumption values for the given year.
@@ -34,9 +34,9 @@ to load and process data from various sources. We break down this function below
     * get_total_gas_industry_self_consuption()
         - skipping...
     * load_decomposition_factors_power()
-        - the power consumption in each wz is distributed according to share 
+        - The power consumption in each wz is distributed according to share 
           of certain applications within the industry (lighting, heating, IT equipment, air conditioning, etc.)
-        - this decomposition are loaded from data/raw/dimensionless/decomposition_factors.xlsx and sheet "Endenergieverbrauch Strom", and is base on literature from AGEB (Arbeitsgemeinschaft Energiebilanzen) and VDI (Verein Deutscher Ingenieure).
+        - This decomposition are loaded from data/raw/dimensionless/decomposition_factors.xlsx and sheet "Endenergieverbrauch Strom", and is base on literature from AGEB (Arbeitsgemeinschaft Energiebilanzen) and VDI (Verein Deutscher Ingenieure).
           **Sample values:**
             | WZ | Beleuchtung | IKT      | Klimakälte | Prozesskälte | Mechanische Energie |
             |----|-------------|----------|------------|--------------|---------------------|
@@ -53,7 +53,7 @@ to load and process data from various sources. We break down this function below
         - returns a dataframe with regional energy consumption for gas and power per region_id
     * calculate_iteratively_industry_regional_consumption()
         - the function takes as input:
-            - the concumption data with self generation per industry sector
+            - the consumption data with self generation per industry sector
             - the total regional energy consumption from JEVI per region_id
             - the employees per industry sector and region_id
         - Resolves the consumption per industry_sector (from UGR) to regional_ids (with the help of JEVI) in an iterative approach.
