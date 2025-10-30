@@ -11,7 +11,7 @@ Below is a detailed explanation from the top-level function down to its sub-func
 - disaggregate_temporal()
     - disagg_applications_efficiency_factor()
         - get_consumption_data_per_indsutry_sector_energy_carrier()
-            - Uses the get_consumption_data() function as explained in the [consumption](consumption.me) documentation.
+            - Uses the get_consumption_data() function as explained in the [consumption](/consumption.md) documentation.
             - Filter the consumption data for the given energy carrier and sector (industry or CTS).
         - dissagregate_for_applications()
             - get_application_dissaggregation_factors()
